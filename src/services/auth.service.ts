@@ -25,12 +25,16 @@ export class AuthService {
         email: data.email,
         password: passwordHash,
       },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        createdAt: true,
+      },
     });
 
     const token = jwt.sign(
-      {
-        id: user.id,
-      },
+      { id: user.id },
       env.JWT_SECRET,
       {
         expiresIn: "7d",
@@ -38,12 +42,7 @@ export class AuthService {
     );
 
     return {
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        createdAt: user.createdAt,
-      },
+      user,
       token,
     };
   }
@@ -69,9 +68,7 @@ export class AuthService {
     }
 
     const token = jwt.sign(
-      {
-        id: user.id,
-      },
+      { id: user.id },
       env.JWT_SECRET,
       {
         expiresIn: "7d",
