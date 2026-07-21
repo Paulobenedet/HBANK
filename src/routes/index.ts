@@ -1,13 +1,13 @@
 import { Router } from "express";
 
+import { authRoutes } from "./auth.routes";
+import { accountRoutes } from "./account.routes";
+import { transactionRoutes } from "./transaction.routes";
+
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.json({
-    status: "online",
-    api: "HBANK",
-    version: "1.0.0",
-  });
-});
+router.use("/auth", authRoutes);
+router.use("/accounts", accountRoutes);
+router.use("/transactions", transactionRoutes);
 
-export default router;
+export { router };
