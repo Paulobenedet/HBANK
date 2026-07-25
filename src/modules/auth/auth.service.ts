@@ -1,10 +1,11 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-import { prisma } from "../config/prisma";
-import { env } from "../config/env";
-import { RegisterDTO, LoginDTO } from "../types/auth.types";
-import { AccountService } from "./account.service";
+import { prisma } from "../../shared/config/prisma";
+import { env } from "../../shared/config/env";
+
+import { RegisterDTO, LoginDTO } from "./auth.types";
+import { AccountService } from "../../services/account.service";
 
 export class AuthService {
   private accountService = new AccountService();

@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 
-import authRoutes from "./routes/auth.routes";
+import authRoutes from "./modules/auth/auth.routes";
 import accountRoutes from "./routes/account.routes";
 import transactionRoutes from "./routes/transaction.routes";
 
