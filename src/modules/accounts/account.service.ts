@@ -1,4 +1,5 @@
-import { prisma } from "../shared/config/prisma";
+import { prisma } from "../../shared/config/prisma";
+
 export class AccountService {
   async create(userId: string) {
     const accountNumber = await this.generateAccountNumber();
@@ -23,7 +24,7 @@ export class AccountService {
   }
 
   private async generateAccountNumber(): Promise<string> {
-    let accountNumber: string;
+    let accountNumber = "";
     let exists = true;
 
     while (exists) {

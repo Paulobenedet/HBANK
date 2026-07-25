@@ -5,7 +5,7 @@ import { prisma } from "../../shared/config/prisma";
 import { env } from "../../shared/config/env";
 
 import { RegisterDTO, LoginDTO } from "./auth.types";
-import { AccountService } from "../../services/account.service";
+import { AccountService } from "../accounts/account.service";
 
 export class AuthService {
   private accountService = new AccountService();
