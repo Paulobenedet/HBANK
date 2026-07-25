@@ -1,4 +1,4 @@
-import { prisma } from "../config/prisma";
+import { prisma } from "../shared/config/prisma";
 
 export class AccountService {
   async create(userId: string) {

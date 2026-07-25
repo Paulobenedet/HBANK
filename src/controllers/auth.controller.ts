@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { prisma } from "../config/prisma";
+import { prisma } from "../shared/config/prisma";
 import { AuthService } from "../services/auth.service";
 
 const authService = new AuthService();
@@ -12,7 +12,10 @@ export class AuthController {
       return res.status(201).json(result);
     } catch (error) {
       return res.status(400).json({
-        message: error instanceof Error ? error.message : "Erro ao cadastrar usuário.",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Erro ao cadastrar usuário.",
       });
     }
   }
@@ -24,7 +27,10 @@ export class AuthController {
       return res.status(200).json(result);
     } catch (error) {
       return res.status(401).json({
-        message: error instanceof Error ? error.message : "E-mail ou senha inválidos.",
+        message:
+          error instanceof Error
+            ? error.message
+            : "E-mail ou senha inválidos.",
       });
     }
   }

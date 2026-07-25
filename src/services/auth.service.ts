@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-import { prisma } from "../config/prisma";
-import { env } from "../config/env";
+import { prisma } from "../shared/config/prisma";
+import { env } from "../shared/config/env";
 import { RegisterDTO, LoginDTO } from "../types/auth.types";
 import { AccountService } from "./account.service";
 

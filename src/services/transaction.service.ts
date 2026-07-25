@@ -1,5 +1,5 @@
 import { Prisma } from "@prisma/client";
-import { prisma } from "../config/prisma";
+import { prisma } from "../shared/config/prisma";
 import { DepositDTO } from "../types/transaction.types";
 import { AccountService } from "./account.service";
 

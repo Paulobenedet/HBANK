@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { prisma } from "../config/prisma";
+import { prisma } from "../shared/config/prisma";
 
 export class AccountController {
   async me(req: Request, res: Response) {
