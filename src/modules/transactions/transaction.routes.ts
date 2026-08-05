@@ -19,4 +19,10 @@ router.post(
   transactionController.withdraw.bind(transactionController)
 );
 
+router.get(
+  "/statement",
+  authMiddleware,
+  transactionController.statement.bind(transactionController)
+);
+
 export default router;

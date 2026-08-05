@@ -97,6 +97,27 @@ export class TransactionService {
     });
   }
 
+  async statement(userId: string) {
+    const account = await this.getAccountByUserId(userId);
+
+    return prisma.transaction.findMany({
+      where: {
+        accountId: account.id,
+      },
+      select: {
+        id: true,
+        type: true,
+        amount: true,
+        description: true,
+        status: true,
+        createdAt: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+  }
+
   private async getAccountByUserId(userId: string) {
     const account = await this.accountService.findByUserId(userId);
 

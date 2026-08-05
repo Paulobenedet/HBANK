@@ -32,6 +32,16 @@ export class TransactionController {
     }
   }
 
+  async statement(req: Request, res: Response) {
+    try {
+      const result = await this.transactionService.statement(req.userId);
+
+      return res.status(200).json(result);
+    } catch (error) {
+      return this.handleError(error, res);
+    }
+  }
+
   private handleError(error: unknown, res: Response) {
     if (error instanceof TransactionError) {
       return res.status(400).json({
