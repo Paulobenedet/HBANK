@@ -100,7 +100,7 @@ export class TransactionService {
   async statement(userId: string) {
     const account = await this.getAccountByUserId(userId);
 
-    return prisma.transaction.findMany({
+    const transactions = await prisma.transaction.findMany({
       where: {
         accountId: account.id,
       },
@@ -116,6 +116,16 @@ export class TransactionService {
         createdAt: "desc",
       },
     });
+
+    return {
+      account: {
+        agency: account.agency,
+        accountNumber: account.accountNumber,
+        balance: account.balance,
+        status: account.status,
+      },
+      transactions,
+    };
   }
 
   private async getAccountByUserId(userId: string) {
