@@ -3,7 +3,7 @@ import cors from "cors";
 
 import authRoutes from "./modules/auth/auth.routes";
 import accountRoutes from "./modules/accounts/account.routes";
-import transactionRoutes from "./routes/transaction.routes";
+import transactionRoutes from "./modules/transactions/transaction.routes";
 
 const app = express();
 
