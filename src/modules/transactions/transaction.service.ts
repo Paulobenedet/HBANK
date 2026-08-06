@@ -97,25 +97,37 @@ export class TransactionService {
     });
   }
 
-  async statement(userId: string) {
+  async statement(userId: string, page = 1, limit = 10) {
     const account = await this.getAccountByUserId(userId);
 
-    const transactions = await prisma.transaction.findMany({
-      where: {
-        accountId: account.id,
-      },
-      select: {
-        id: true,
-        type: true,
-        amount: true,
-        description: true,
-        status: true,
-        createdAt: true,
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
+    const skip = (page - 1) * limit;
+
+    const [transactions, total] = await Promise.all([
+      prisma.transaction.findMany({
+        where: {
+          accountId: account.id,
+        },
+        select: {
+          id: true,
+          type: true,
+          amount: true,
+          description: true,
+          status: true,
+          createdAt: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+        skip,
+        take: limit,
+      }),
+
+      prisma.transaction.count({
+        where: {
+          accountId: account.id,
+        },
+      }),
+    ]);
 
     return {
       account: {
@@ -124,6 +136,14 @@ export class TransactionService {
         balance: account.balance,
         status: account.status,
       },
+
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit),
+      },
+
       transactions,
     };
   }
